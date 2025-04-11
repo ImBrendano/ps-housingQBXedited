@@ -62,18 +62,6 @@ INSERT INTO `properties` (`property_id`, `owner_citizenid`, `street`, `region`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `properties_decorations`
---
-
-CREATE TABLE `properties_decorations` (
-  `id` bigint(20) NOT NULL,
-  `property_id` int(11) NOT NULL,
-  `model` varchar(255) NOT NULL,
-  `coords` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`coords`)),
-  `rotation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`rotation`))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Indexes for dumped tables
 --
 
@@ -85,13 +73,6 @@ ALTER TABLE `properties`
   ADD UNIQUE KEY `UQ_owner_apartment` (`owner_citizenid`,`apartment`);
 
 --
--- Indexes for table `properties_decorations`
---
-ALTER TABLE `properties_decorations`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `property_id` (`property_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -101,11 +82,6 @@ ALTER TABLE `properties_decorations`
 ALTER TABLE `properties`
   MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT for table `properties_decorations`
---
-ALTER TABLE `properties_decorations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -120,9 +96,6 @@ ALTER TABLE `properties`
 --
 -- Constraints for table `properties_decorations`
 --
-ALTER TABLE `properties_decorations`
-  ADD CONSTRAINT `properties_decorations_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`) ON DELETE CASCADE;
-COMMIT;
 
 -- TURN FOREIGN KEY CHECKS BACK ON AFTER!!
 SET FOREIGN_KEY_CHECKS=1;
