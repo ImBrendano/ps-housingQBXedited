@@ -107,25 +107,7 @@ function Apartment:GetMenuForAllToRaid()
 end
 
 function Apartment:CreateBlip(hasProperty)
-    self:DeleteBlip()
 
-    local door = self.apartmentData.door
-    local blip = AddBlipForCoord(door.x, door.y, door.z)
-
-    SetBlipSprite(blip, 475)
-    SetBlipScale(blip, 0.8)
-    
-    if hasProperty then
-        SetBlipColour(blip, 2)
-    else
-        SetBlipColour(blip, 4)
-    end
-
-    SetBlipAsShortRange(blip, true)
-    BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString(self.apartmentData.label)
-    EndTextCommandSetBlipName(blip)
-    self.blip = blip
 end
 
 function Apartment:DeleteBlip()

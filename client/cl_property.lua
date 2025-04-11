@@ -147,7 +147,7 @@ function Property:RegisterMlo()
             thickness = zoneData.thickness + 3,
             debug = Config.DebugMode,
             onEnter = function()
-                TriggerServerEvent("ps-housing:server:enterProperty", self.property_id,nil,true)
+                TriggerServerEvent("ps-housing:server:enterProperty", self.property_id)
             end,
             onExit = function()
                 self:LeaveShell()
@@ -678,27 +678,6 @@ function getCenter(zone)
 end
 
 function Property:CreateBlip()
-    local door_data = self.propertyData.door_data
-    if door_data.x == nil then
-        local zone_data = self.propertyData.zone_data
-        if type(zone_data) == "string" then
-            zone_data = json.decode(zone_data)
-        end
-        door_data = getCenter(zone_data.points)
-    end
-    local blip = AddBlipForCoord(door_data.x, door_data.y, door_data.z)
-    if self.propertyData.garage_data.x ~= nil then
-        SetBlipSprite(blip, 492)
-    else
-        SetBlipSprite(blip, 40)
-    end
-    SetBlipScale(blip, 0.8)
-    SetBlipColour(blip, 2)
-    SetBlipAsShortRange(blip, true)
-    BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString(self.propertyData.street .. " " .. self.property_id)
-    EndTextCommandSetBlipName(blip)
-    self.blip = blip
 end
 
 function Property:RemoveBlip()
